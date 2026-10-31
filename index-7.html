@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#087f5b">
+  <meta name="description" content="Green Life يساعدك على تقدير استهلاك الكهرباء ومتابعة الأجهزة وتوفير الطاقة.">
+  <title>Green Life | جرين لايف</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <style>
+    :root{--green:#087f5b;--green2:#10a674;--mint:#e8f7f0;--bg:#f4f8f6;--card:#fff;--text:#18352b;--muted:#718078;--line:#e4ece7;--danger:#d94848;--shadow:0 12px 35px #123d2b0d}
+    :root.dark{--bg:#0e1915;--card:#17251f;--text:#e8f3ed;--muted:#a0b2a8;--line:#2a3b32;--mint:#203a2e;--shadow:0 12px 35px #0003}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;transition:.2s}
+    button,input{font:inherit}button{cursor:pointer}.app{max-width:1120px;margin:auto;padding:0 18px 100px}
+    header{background:linear-gradient(115deg,#066347,#10a674);color:white;position:sticky;top:0;z-index:10;box-shadow:0 5px 20px #063d2c30}
+    .top{max-width:1120px;margin:auto;min-height:70px;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:11px}.logo{width:43px;height:43px;border-radius:14px;background:#ffffff24;display:grid;place-items:center;font-size:24px}.brand strong{font-size:20px;display:block;line-height:1.2}.brand small{opacity:.8}
+    .actions{display:flex;gap:8px}.iconbtn{border:1px solid #ffffff50;background:#ffffff18;color:white;border-radius:12px;padding:9px 12px;font-weight:700}
+    .hero{margin:24px 0 18px;padding:25px;border-radius:24px;color:white;background:radial-gradient(circle at 10% 10%,#ffffff28,transparent 35%),linear-gradient(120deg,#07583f,#0c9468);position:relative;overflow:hidden}
+    .hero:after{content:"🌿";position:absolute;font-size:125px;opacity:.12;left:22px;bottom:-42px}.hero h1{margin:0 0 6px;font-size:clamp(23px,4vw,32px)}.hero p{margin:0;color:#e0fff0;max-width:620px;line-height:1.8}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow)}
+    .stat{padding:17px}.stat-label{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}.stat-value{font-weight:850;font-size:25px;margin:10px 0 2px;color:var(--green)}.stat small{color:var(--muted)}
+    .layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(270px,1fr);gap:16px;margin-top:16px}.stack{display:grid;gap:16px;align-content:start}
+    .panel{padding:20px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.panel h2{font-size:18px;margin:0}.muted{color:var(--muted);font-size:13px;line-height:1.7}
+    .presets{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:15px}.preset{background:var(--mint);border:1px solid #ccebdc;color:var(--text);border-radius:13px;padding:12px 8px;text-align:start}.dark .preset{border-color:var(--line)}.preset b{display:block;font-size:13px}.preset span{font-size:12px;color:var(--muted)}
+    .form{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:9px;padding:13px;background:var(--bg);border:1px solid var(--line);border-radius:15px;margin-bottom:17px}
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;font-weight:700}input{width:100%;min-width:0;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);outline:none}input:focus{border-color:var(--green);box-shadow:0 0 0 3px #10a67420}
+    .primary{border:0;background:var(--green);color:white;padding:10px 16px;border-radius:11px;font-weight:800;white-space:nowrap}.primary:hover{background:#066a4d}.secondary{border:1px solid var(--line);background:var(--card);color:var(--text);padding:8px 11px;border-radius:10px;font-size:12px;font-weight:700}.danger{color:var(--danger);border:0;background:transparent;font-size:18px;padding:5px}
+    .tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:490px;font-size:13px}th,td{text-align:start;padding:12px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px}td strong{color:var(--green)}.empty{text-align:center;color:var(--muted);padding:25px}
+    .chart-area{display:flex;align-items:center;gap:20px;min-height:170px}.donut{width:148px;height:148px;border-radius:50%;flex:none;position:relative;background:conic-gradient(var(--green) 0 100%)}.donut:after{content:"";position:absolute;inset:28px;background:var(--card);border-radius:50%}.legend{display:grid;gap:9px;font-size:12px;min-width:0}.legend-row{display:flex;gap:8px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;flex:none}
+    .tip{padding:11px 12px;border:1px solid var(--line);border-radius:12px;margin-top:9px;font-size:13px;line-height:1.7}.tip b{color:var(--green)}
+    .meter-result{margin-top:12px;background:var(--mint);border-radius:12px;padding:12px;font-size:13px;line-height:1.8}
+    .tariffs{display:grid;gap:0}.tariff{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px}.tariff:last-child{border:0}
+    .notice{font-size:11px;color:var(--muted);line-height:1.7;margin-top:12px;padding:10px;background:var(--bg);border-radius:10px}
+    footer{text-align:center;color:var(--muted);font-size:11px;padding:24px 10px}
+    .bottomnav{display:none}
+    @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:1fr}.app{padding-inline:13px}}
+    @media(max-width:560px){.top{min-height:62px}.brand strong{font-size:17px}.hero{padding:21px 18px;margin-top:16px}.stat{padding:14px}.stat-value{font-size:22px}.panel{padding:16px}.form{grid-template-columns:1fr 1fr}.form>div:first-child{grid-column:1/-1}.form button{grid-column:1/-1}.presets{gap:7px}.preset{padding:10px 7px}.chart-area{gap:12px}.donut{width:125px;height:125px}.donut:after{inset:24px}.bottomnav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:9;background:var(--card);border-top:1px solid var(--line);padding:10px 18px calc(10px + env(safe-area-inset-bottom));justify-content:space-around;color:var(--muted);font-size:11px}.bottomnav a{color:inherit;text-decoration:none;display:grid;justify-items:center;gap:3px}.bottomnav span{font-size:19px}}
+
+
+    /* Smart daily-life coach */
+    .coach-intro{background:linear-gradient(135deg,var(--mint),var(--card));border:1px solid var(--line);border-radius:15px;padding:13px;margin-bottom:13px}
+    .coach-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .coach-form .wide{grid-column:1/-1}
+    .coach-form textarea,.chat-input{width:100%;min-height:94px;resize:vertical;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);font:inherit;font-size:15px;line-height:1.6}
+    .coach-form select,.coach-form input{width:100%;min-height:44px;padding:10px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text);font:inherit;font-size:16px}
+    .coach-results{display:grid;gap:9px;margin-top:13px}.coach-card{padding:12px;border:1px solid var(--line);border-radius:13px;background:var(--bg);line-height:1.75;font-size:13px}.coach-card b{color:var(--green)}
+    .chatbox{margin-top:15px;border-top:1px solid var(--line);padding-top:13px}.chat-log{display:grid;gap:8px;margin:10px 0}.chat-msg{max-width:95%;padding:10px 12px;border-radius:13px;background:var(--bg);font-size:13px;line-height:1.7;white-space:pre-wrap}.chat-msg.user{justify-self:start;background:var(--mint)}.chat-row{display:flex;gap:8px;align-items:stretch}.chat-row input{flex:1;min-width:0}
+    @media(max-width:560px){.coach-form{grid-template-columns:1fr 1fr}.coach-form .wide{grid-column:1/-1}.coach-card{font-size:12px}.chat-row{flex-wrap:wrap}.chat-row input{width:100%;flex-basis:100%}.chat-row button{width:100%}}
+
+    /* Mobile-first app presentation */
+    html{scroll-behavior:smooth;scroll-padding-top:82px}
+    body{min-height:100vh;-webkit-tap-highlight-color:transparent;overscroll-behavior-y:contain}
+    button,a{touch-action:manipulation}
+    @media(max-width:560px){
+      body{background:var(--bg)}
+      header{position:sticky;top:0;padding-top:env(safe-area-inset-top);border-radius:0 0 20px 20px}
+      .top{padding:9px 15px;min-height:58px}
+      .logo{width:39px;height:39px;border-radius:13px}
+      .actions{gap:6px}.iconbtn{padding:8px 10px;border-radius:12px;font-size:12px}
+      #installBtn:not([hidden]){font-size:11px;padding:8px}
+      .app{width:100%;max-width:none;padding:0 12px calc(94px + env(safe-area-inset-bottom))}
+      .hero{margin:13px 0 13px;padding:19px 17px;border-radius:21px;box-shadow:0 10px 25px #07583f20}
+      .hero h1{font-size:21px;line-height:1.45;max-width:270px}
+      .hero p{font-size:12px;line-height:1.7;max-width:290px}
+      .grid{gap:9px;grid-template-columns:repeat(2,minmax(0,1fr))}
+      .stat{padding:12px 13px;border-radius:17px;box-shadow:0 5px 16px #123d2b09}
+      .stat-label{font-size:11px}.stat-value{font-size:21px;margin:7px 0 1px}.stat small{font-size:10px}
+      .layout{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+      .stack{gap:12px}
+      .panel{padding:14px;border-radius:19px;box-shadow:0 5px 18px #123d2b0a}
+      .panel-head{margin-bottom:13px}.panel h2{font-size:16px}
+      .secondary{padding:7px 9px;font-size:11px}
+      .presets{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+      .preset{border-radius:13px;padding:10px 5px;text-align:center;font-size:17px;min-width:0}
+      .preset b{font-size:10px;line-height:1.4;min-height:29px}
+      .preset span{font-size:10px}
+      .form{grid-template-columns:1fr 1fr;gap:9px;padding:11px;border-radius:15px}
+      .form>div:first-child{grid-column:1/-1}
+      .form label{font-size:11px}
+      input{padding:12px 10px;border-radius:12px;font-size:16px;min-height:44px}
+      .primary{min-height:45px;border-radius:13px;font-size:14px}
+      .form button{grid-column:1/-1}
+      .tablewrap{overflow:visible}
+      table{min-width:0;width:100%;border-collapse:separate;border-spacing:0 8px;font-size:12px}
+      thead{display:none}
+      tbody{display:grid;gap:8px}
+      tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:7px 10px;padding:12px;background:var(--bg);border:1px solid var(--line);border-radius:14px}
+      tbody td{border:0;padding:0;font-size:11px;min-width:0;overflow-wrap:anywhere}
+      tbody td:first-child{grid-column:1/-1;font-size:14px;font-weight:800;padding-bottom:5px;border-bottom:1px solid var(--line)}
+      tbody td:nth-child(2):before{content:'القدرة: ';color:var(--muted)}
+      tbody td:nth-child(3):before{content:'ساعات/يوم: ';color:var(--muted)}
+      tbody td:nth-child(4):before{content:'شهرياً: ';color:var(--muted)}
+      tbody td:nth-child(5){position:absolute;inset-inline-end:23px;margin-top:-3px}
+      tbody td:nth-child(5) button{width:30px;height:30px;border-radius:10px;background:#d9484812;font-size:20px}
+      tbody tr:has(.empty){display:block;background:transparent;border:0}
+      .chart-area{min-height:145px;justify-content:space-around}
+      .donut{width:116px;height:116px}.donut:after{inset:22px}
+      .legend{font-size:11px;gap:7px;max-width:52%}
+      .tip{font-size:12px;border-radius:13px}
+      .bottomnav{display:flex;align-items:center;justify-content:space-around;gap:3px;position:fixed;bottom:0;left:0;right:0;z-index:20;background:color-mix(in srgb,var(--card) 94%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:9px 8px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px #102d2010}
+      .bottomnav a{flex:1;min-width:0;padding:5px 2px;border-radius:12px;font-size:10px;gap:4px}
+      .bottomnav span{font-size:19px;line-height:1.1}
+      .bottomnav b{font-size:10px;font-weight:700}
+      footer{padding:17px 10px 8px;font-size:10px}
+    }
+    @media(min-width:561px){.bottomnav{display:none}}
+  </style>
+</head>
+<body>
+<header><div class="top">
+  <div class="brand"><div class="logo">🌱</div><div><strong>Green Life</strong><small id="subtitle">جرين لايف · مصر</small></div></div>
+  <div class="actions"><button class="iconbtn" id="langBtn" type="button">English</button><button class="iconbtn" id="themeBtn" type="button" aria-label="تغيير المظهر">☾</button><button class="iconbtn" id="installBtn" type="button" hidden>تثبيت التطبيق</button></div>
+</div></header>
+<main class="app">
+  <section class="hero"><h1 id="heroTitle">وفّر كهرباء… وخلّي حياتك أخضر 🌍</h1><p id="heroDesc">تابع استهلاك أجهزتك، قدّر فاتورتك، واكتشف فرص بسيطة لتوفير الطاقة في البيت.</p></section>
+  <section class="grid" aria-label="ملخص الاستهلاك">
+    <article class="stat"><div class="stat-label"><span data-t="tier">الشريحة التقديرية</span><span>▤</span></div><div class="stat-value" id="dashTier">—</div><small id="tierDesc">—</small></article>
+    <article class="stat"><div class="stat-label"><span data-t="consumption">الاستهلاك الشهري</span><span>⚡</span></div><div class="stat-value" id="dashKwh">0</div><small data-t="kwh">كيلوواط ساعة</small></article>
+    <article class="stat"><div class="stat-label"><span data-t="bill">تكلفة تقديرية</span><span>💳</span></div><div class="stat-value" id="dashBill">0</div><small data-t="egp">جنيه مصري</small></article>
+    <article class="stat"><div class="stat-label"><span data-t="devices">عدد الأجهزة</span><span>🔌</span></div><div class="stat-value" id="dashCount">0</div><small data-t="registered">أجهزة مسجلة</small></article>
+  </section>
+  <div class="layout">
+    <div class="stack">
+      <section class="panel" id="appliances">
+        <div class="panel-head"><h2>🔌 <span data-t="appliances">حاسبة الأجهزة المنزلية</span></h2><button class="secondary" id="resetBtn" type="button" data-t="reset">إعادة ضبط</button></div>
+        <div class="presets">
+          <button class="preset" data-preset="ac" type="button">❄️ <b data-t="ac">تكييف 1.5 حصان</b><span>1400 W</span></button>
+          <button class="preset" data-preset="heater" type="button">♨️ <b data-t="heater">سخان كهرباء</b><span>1800 W</span></button>
+          <button class="preset" data-preset="fridge" type="button">🧊 <b data-t="fridge">ثلاجة</b><span>200 W</span></button>
+        </div>
+        <form class="form" id="applianceForm">
+          <div><label for="appName" data-t="name">اسم الجهاز</label><input id="appName" required maxlength="45" placeholder="مثال: تلفزيون"></div>
+          <div><label for="appWatts" data-t="watts">القدرة (واط)</label><input id="appWatts" type="number" required min="1" max="100000" step="1" placeholder="500"></div>
+          <div><label for="appHours" data-t="hours">ساعة يومياً</label><input id="appHours" type="number" required min="0.1" max="24" step="0.1" placeholder="5"></div>
+          <button class="primary" type="submit" data-t="add">＋ إضافة</button>
+        </form>
+        <div class="tablewrap"><table><thead><tr><th data-t="name">الجهاز</th><th data-t="watts">القدرة</th><th data-t="hours">ساعة/يوم</th><th data-t="monthly">شهرياً</th><th data-t="action">حذف</th></tr></thead><tbody id="applianceList"></tbody></table></div>
+      </section>
+      <section class="panel" id="analysis">
+        <div class="panel-head"><h2>📊 <span data-t="analysis">تحليل الاستهلاك</span></h2></div>
+        <div class="chart-area"><div class="donut" id="donut" role="img" aria-label="رسم دائري لاستهلاك الأجهزة"></div><div class="legend" id="legend"></div></div>
+      </section>
+    </div>
+    <aside class="stack">
+      <section class="panel" id="savings">
+        <div class="panel-head"><h2>🌿 <span data-t="plan">خطة التوفير</span></h2></div>
+        <p class="muted" data-t="planDesc">اقتراحات تلقائية مبنية على الأجهزة التي أضفتها، وليست خدمة ذكاء اصطناعي متصلة.</p>
+        <button class="primary" id="planBtn" type="button" style="width:100%" data-t="makePlan">اعرض نصائح التوفير</button>
+        <div id="tips" aria-live="polite"></div>
+      </section>
+
+      <section class="panel" id="smartcoach">
+        <div class="panel-head"><h2>🤖 <span data-t="coachTitle">مساعد Green Life الذكي</span></h2><span class="muted" data-t="coachTag">روتين أوفر وأصح</span></div>
+        <div class="coach-intro"><b data-t="coachIntroTitle">خلّي يومك أذكى 🌱</b><div class="muted" data-t="coachIntro">احكي للمساعد عن مواعيد نومك ودراستك أو شغلك وتنقّلك واستخدامك للأجهزة. هيقترح روتين يومي يجمع بين عادات صحية عامة وتوفير الكهرباء.</div></div>
+        <form id="routineForm" class="coach-form">
+          <div><label for="wakeTime" data-t="wakeLabel">بتصحى الساعة كام؟</label><input id="wakeTime" type="time" value="07:00" required></div>
+          <div><label for="sleepTime" data-t="sleepLabel">بتنام الساعة كام؟</label><input id="sleepTime" type="time" value="22:30" required></div>
+          <div class="wide"><label for="dayType" data-t="dayTypeLabel">شكل يومك غالباً</label><select id="dayType"><option value="school" data-t="daySchool">مدرسة / جامعة</option><option value="work" data-t="dayWork">شغل</option><option value="home" data-t="dayHome">في البيت غالباً</option><option value="mixed" data-t="dayMixed">متغير</option></select></div>
+          <div class="wide"><label for="routineText" data-t="routineLabel">اكتب روتينك اليومي بالتفصيل</label><textarea id="routineText" maxlength="1200" placeholder="مثال: بصحى 7، بروح المدرسة 8، برجع 3، بذاكر ساعتين، بلعب على الكمبيوتر، وبشغل التكييف بالليل..."></textarea></div>
+          <div class="wide"><label for="healthFocus" data-t="healthLabel">إيه العادة اللي تحب تحسنها؟</label><select id="healthFocus"><option value="sleep" data-t="focusSleep">تنظيم النوم</option><option value="movement" data-t="focusMove">الحركة وتقليل القعدة</option><option value="balance" data-t="focusBalance">توازن اليوم وتقليل وقت الشاشات</option><option value="general" data-t="focusGeneral">عادات يومية متوازنة</option></select></div>
+          <button class="primary wide" type="submit" data-t="makeRoutine">✨ اعمل لي خطتي اليومية</button>
+        </form>
+        <div id="coachResults" class="coach-results" aria-live="polite"><div class="muted" data-t="coachEmpty">املأ بياناتك واضغط «اعمل لي خطتي اليومية» عشان تظهر خطة مناسبة لروتينك.</div></div>
+        <div class="chatbox"><b data-t="askCoach">💬 اسأل المساعد</b><div class="muted" data-t="chatHint">مثلاً: إزاي أوفر كهرباء وقت المذاكرة؟ أو أعمل إيه عشان أنام بدري؟</div>
+          <div id="chatLog" class="chat-log" aria-live="polite"><div class="chat-msg" data-t="chatWelcome">أهلاً! بعد ما تعمل خطتك، اسألني عن أي جزء فيها.</div></div>
+          <form id="chatForm" class="chat-row"><input id="chatQuestion" maxlength="300" placeholder="اكتب سؤالك هنا..." aria-label="اكتب سؤالك"><button class="primary" type="submit" data-t="send">إرسال</button></form>
+        </div>
+        <div class="notice" data-t="coachNotice">مهم: النسخة الحالية تستخدم قواعد واقتراحات محلية ذكية داخل التطبيق، وليست متصلة بنموذج ذكاء اصطناعي سحابي. لا ترسل بيانات شخصية حساسة. نصائح الصحة عامة وليست تشخيصاً أو بديلاً عن مختص.</div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><h2>💳 <span data-t="meter">متابعة رصيد العداد</span></h2></div>
+        <p class="muted" data-t="meterDesc">حساب تقريبي لعدد الأيام اعتماداً على استهلاك الأجهزة والتعريفة المدخلة.</p>
+        <label for="balance" data-t="balance">الرصيد المتبقي (جنيه)</label><input id="balance" type="number" min="0.01" step="0.01" placeholder="150">
+        <button class="primary" id="meterBtn" type="button" style="width:100%;margin-top:10px" data-t="calc">احسب الأيام المتبقية</button>
+        <div class="meter-result" id="meterResult" hidden aria-live="polite"></div>
+      </section>
+      <section class="panel" id="tariffs">
+        <div class="panel-head"><h2>ℹ️ <span data-t="tariffs">تعريفة مرجعية (قيم الملف الأصلي)</span></h2></div>
+        <div class="tariffs" id="tariffList"></div>
+        <div class="notice" data-t="disclaimer">تنبيه: الأسعار المنقولة من النسخة الأصلية ولم يتم التحقق من أنها التعريفة الرسمية السارية. الحساب تقديري ولا يشمل الرسوم أو الضرائب أو فروق نظام المحاسبة. راجع فاتورتك أو شركة التوزيع.</div>
+      </section>
+    </aside>
+  </div>
+  <footer>Green Life © 2026 · <span data-t="footer">ترشيد الطاقة يبدأ بخطوة صغيرة</span></footer>
+</main>
+<nav class="bottomnav" aria-label="التنقل الرئيسي"><a href="#smartcoach"><span>🤖</span><b data-t="navCoach">المساعد</b></a><a href="#appliances"><span>🔌</span><b data-t="navDevices">الأجهزة</b></a><a href="#analysis"><span>📊</span><b data-t="navAnalysis">التحليل</b></a><a href="#savings"><span>🌿</span><b data-t="navSavings">التوفير</b></a><a href="#tariffs"><span>💡</span><b data-t="navTariffs">الأسعار</b></a></nav>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const defaults = [
+ {id:1,name:'تكييف 1.5 حصان',watts:1400,hours:6},
+ {id:2,name:'ثلاجة منزلية',watts:200,hours:24},
+ {id:3,name:'سخان كهربائي',watts:1800,hours:2}
+];
+const rates = [0.68,0.78,0.95,1.55,1.95,2.10,2.23];
+const limits = [50,100,200,350,650,1000,Infinity];
+const colors = ['#087f5b','#10a674','#53bd8d','#8bd4b0','#b7e7ce','#4c9b75','#b3c9bd'];
+let appliances = load('gl-appliances', defaults);
+let lang = load('gl-lang','ar');
+let dark = load('gl-dark',false);
+let installPrompt = null;
+function load(key,fallback){try{const v=localStorage.getItem(key);return v===null?fallback:JSON.parse(v)}catch{return fallback}}
+function save(){try{localStorage.setItem('gl-appliances',JSON.stringify(appliances))}catch{}}
+const words = {
+en:{subtitle:'Green Life · Egypt',heroTitle:'Save electricity. Live greener. 🌍',heroDesc:'Track your appliances, estimate energy costs, and find simple ways to save at home.',tier:'Estimated tariff tier',consumption:'Monthly consumption',kwh:'kilowatt-hours',bill:'Estimated cost',egp:'Egyptian pounds',devices:'Appliances',registered:'registered appliances',appliances:'Home appliance calculator',reset:'Reset',ac:'1.5 HP air conditioner',heater:'Water heater',fridge:'Refrigerator',name:'Appliance name',watts:'Power (watts)',hours:'Hours per day',add:'＋ Add',monthly:'Monthly',action:'Remove',analysis:'Consumption breakdown',plan:'Saving tips',planDesc:'Automatic suggestions based on your appliance list; this is not a connected AI service.',makePlan:'Show saving tips',meter:'Prepaid meter balance',meterDesc:'An approximate estimate based on your appliance usage and the entered tariff.',balance:'Remaining balance (EGP)',calc:'Calculate days left',tariffs:'Reference tariff (from original file)',disclaimer:'Note: These rates were copied from the original version and have not been verified as the currently applicable official tariff. This estimate excludes fees, taxes, and billing-method differences. Check your bill or distribution company.',footer:'Small steps make a difference',empty:'No appliances added yet.',days:'Estimated remaining days',daily:'Estimated daily cost',tierName:'Tier',noData:'Add appliances to see the chart.',valid:'Please enter a valid balance greater than zero.',resetAsk:'Remove all appliances?',saved:'Your changes are saved on this device.',coachTitle:'Green Life Smart Assistant',coachTag:'A healthier, energy-saving routine',coachIntroTitle:'Make your day smarter 🌱',coachIntro:'Tell the assistant about your sleep schedule, school or work, commute, and appliance use. It will suggest a daily routine combining general healthy habits with electricity-saving ideas.',wakeLabel:'What time do you wake up?',sleepLabel:'What time do you go to sleep?',dayTypeLabel:'What does your day usually look like?',daySchool:'School / university',dayWork:'Work',dayHome:'Mostly at home',dayMixed:'Varies',routineLabel:'Describe your daily routine',routinePlaceholder:'Example: I wake up at 7, leave for school at 8, return at 3, study for two hours, use my computer, and run the AC at night...',healthLabel:'Which habit would you like to improve?',focusSleep:'Sleep routine',focusMove:'Movement and fewer long sitting periods',focusBalance:'Daily balance and less screen time',focusGeneral:'Balanced daily habits',makeRoutine:'✨ Build my daily plan',coachEmpty:'Fill in your details and select “Build my daily plan” to get suggestions.',askCoach:'💬 Ask the assistant',chatHint:'For example: How can I save electricity while studying? How can I build a better sleep routine?',chatWelcome:'Hello! Once you create your plan, ask me about any part of it.',chatPlaceholder:'Type your question here...',send:'Send',coachNotice:'Note: This version uses built-in local rules and suggestions. It is not connected to a cloud AI model. Do not enter sensitive personal information. Health suggestions are general information, not a diagnosis or a substitute for professional advice.',navCoach:'Assistant',navDevices:'Appliances',navAnalysis:'Analysis',navSavings:'Savings',navTariffs:'Tariffs'},
+ar:{subtitle:'جرين لايف · مصر',heroTitle:'وفّر كهرباء… وخلّي حياتك أخضر 🌍',heroDesc:'تابع استهلاك أجهزتك، قدّر تكلفتها، واكتشف طرق بسيطة لتوفير الطاقة في البيت.',tier:'الشريحة التقديرية',consumption:'الاستهلاك الشهري',kwh:'كيلوواط ساعة',bill:'تكلفة تقديرية',egp:'جنيه مصري',devices:'عدد الأجهزة',registered:'أجهزة مسجلة',appliances:'حاسبة الأجهزة المنزلية',reset:'إعادة ضبط',ac:'تكييف 1.5 حصان',heater:'سخان كهرباء',fridge:'ثلاجة',name:'اسم الجهاز',watts:'القدرة (واط)',hours:'ساعة يومياً',add:'＋ إضافة',monthly:'شهرياً',action:'حذف',analysis:'تحليل الاستهلاك',plan:'نصائح التوفير',planDesc:'اقتراحات تلقائية مبنية على الأجهزة التي أضفتها، وليست خدمة ذكاء اصطناعي متصلة.',makePlan:'اعرض نصائح التوفير',meter:'متابعة رصيد العداد',meterDesc:'حساب تقريبي لعدد الأيام اعتماداً على استهلاك الأجهزة والتعريفة المدخلة.',balance:'الرصيد المتبقي (جنيه)',calc:'احسب الأيام المتبقية',tariffs:'تعريفة مرجعية (قيم الملف الأصلي)',disclaimer:'تنبيه: الأسعار منقولة من النسخة الأصلية ولم يتم التحقق من أنها التعريفة الرسمية السارية. الحساب تقديري ولا يشمل الرسوم أو الضرائب أو فروق نظام المحاسبة. راجع فاتورتك أو شركة التوزيع.',footer:'ترشيد الطاقة يبدأ بخطوة صغيرة',empty:'لم تتم إضافة أجهزة بعد.',days:'الأيام المتبقية تقديرياً',daily:'التكلفة اليومية التقديرية',tierName:'الشريحة',noData:'أضف أجهزة لعرض الرسم البياني.',valid:'من فضلك أدخل رصيداً صحيحاً أكبر من صفر.',resetAsk:'هل تريد حذف كل الأجهزة؟',saved:'يتم حفظ التغييرات على هذا الجهاز.',coachTitle:'مساعد Green Life الذكي',coachTag:'روتين أوفر وأصح',coachIntroTitle:'خلّي يومك أذكى 🌱',coachIntro:'احكي للمساعد عن مواعيد نومك ودراستك أو شغلك وتنقّلك واستخدامك للأجهزة. هيقترح روتين يومي يجمع بين عادات صحية عامة وتوفير الكهرباء.',wakeLabel:'بتصحى الساعة كام؟',sleepLabel:'بتنام الساعة كام؟',dayTypeLabel:'شكل يومك غالباً',daySchool:'مدرسة / جامعة',dayWork:'شغل',dayHome:'في البيت غالباً',dayMixed:'متغير',routineLabel:'اكتب روتينك اليومي بالتفصيل',routinePlaceholder:'مثال: بصحى 7، بروح المدرسة 8، برجع 3، بذاكر ساعتين، بستخدم الكمبيوتر، وبشغل التكييف بالليل...',healthLabel:'إيه العادة اللي تحب تحسنها؟',focusSleep:'تنظيم النوم',focusMove:'الحركة وتقليل القعدة',focusBalance:'توازن اليوم وتقليل وقت الشاشات',focusGeneral:'عادات يومية متوازنة',makeRoutine:'✨ اعمل لي خطتي اليومية',coachEmpty:'املأ بياناتك واضغط «اعمل لي خطتي اليومية» عشان تظهر خطة مناسبة لروتينك.',askCoach:'💬 اسأل المساعد',chatHint:'مثلاً: إزاي أوفر كهرباء وقت المذاكرة؟ أو أعمل إيه عشان أنام بدري؟',chatWelcome:'أهلاً! بعد ما تعمل خطتك، اسألني عن أي جزء فيها.',chatPlaceholder:'اكتب سؤالك هنا...',send:'إرسال',coachNotice:'مهم: النسخة الحالية تستخدم قواعد واقتراحات محلية ذكية داخل التطبيق، وليست متصلة بنموذج ذكاء اصطناعي سحابي. لا ترسل بيانات شخصية حساسة. نصائح الصحة عامة وليست تشخيصاً أو بديلاً عن مختص.',navCoach:'المساعد',navDevices:'الأجهزة',navAnalysis:'التحليل',navSavings:'التوفير',navTariffs:'الأسعار'}
+};
+function t(k){return words[lang][k]||words.ar[k]||k}
+function fmt(n,d=1){return new Intl.NumberFormat(lang==='ar'?'ar-EG':'en-US',{maximumFractionDigits:d}).format(n)}
+function usage(a){return a.watts*a.hours*30/1000}
+function applianceLabel(name){if(lang!=='en')return name;return ({'تكييف 1.5 حصان':'1.5 HP air conditioner','ثلاجة منزلية':'Refrigerator','ثلاجة':'Refrigerator','سخان كهربائي':'Water heater','سخان كهرباء':'Water heater'})[name]||name}
+function billFor(kwh){let left=Math.max(0,kwh),total=0,tier=0,prev=0;for(let i=0;i<limits.length;i++){const qty=Math.max(0,Math.min(left,limits[i]-prev));total+=qty*rates[i];if(qty>0)tier=i;left-=qty;prev=limits[i];if(left<=0)break}return {total,tier}}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){
+ const total=appliances.reduce((s,a)=>s+usage(a),0), stats=billFor(total);
+ $('dashKwh').textContent=fmt(total);$('dashBill').textContent=fmt(stats.total,2);$('dashCount').textContent=fmt(appliances.length,0);
+ $('dashTier').textContent=lang==='ar'?`الشريحة ${stats.tier+1}`:`Tier ${stats.tier+1}`;
+ const lo=stats.tier===0?0:limits[stats.tier-1],hi=limits[stats.tier];
+ $('tierDesc').textContent=lang==='ar'?`${fmt(lo,0)} – ${hi===Infinity?'∞':fmt(hi,0)} ك.و.س`:`${fmt(lo,0)} – ${hi===Infinity?'∞':fmt(hi,0)} kWh`;
+ $('applianceList').innerHTML=appliances.length?appliances.map(a=>`<tr><td><b>${escapeHTML(applianceLabel(a.name))}</b></td><td>${fmt(a.watts,0)} W</td><td>${fmt(a.hours)} h</td><td><strong>${fmt(usage(a))} kWh</strong></td><td><button class="danger" data-remove="${a.id}" aria-label="${t('action')}">×</button></td></tr>`).join(''):`<tr><td colspan="5" class="empty">${t('empty')}</td></tr>`;
+ renderChart();renderTariffs();
+}
+function renderChart(){
+ const vals=appliances.map(usage),sum=vals.reduce((a,b)=>a+b,0);
+ let cursor=0,parts=vals.map((v,i)=>{const start=cursor;cursor+=sum?v/sum*100:0;return `${colors[i%colors.length]} ${start}% ${cursor}%`});
+ $('donut').style.background=sum?`conic-gradient(${parts.join(',')})`:'var(--line)';
+ $('legend').innerHTML=appliances.length?appliances.map((a,i)=>`<div class="legend-row"><i class="dot" style="background:${colors[i%colors.length]}"></i><span>${escapeHTML(applianceLabel(a.name))} · ${fmt(vals[i])} kWh</span></div>`).join(''):`<span class="muted">${t('noData')}</span>`;
+}
+function renderTariffs(){
+ let prev=0;$('tariffList').innerHTML=limits.map((limit,i)=>{const from=prev;prev=limit;const range=lang==='ar'?`${fmt(from,0)} – ${limit===Infinity?'أكثر من 1000':fmt(limit,0)} ك.و.س`:`${fmt(from,0)} – ${limit===Infinity?'above 1000':fmt(limit,0)} kWh`;return `<div class="tariff"><span>${range}</span><b>${fmt(rates[i]*100,0)} ${lang==='ar'?'قرش':'pt/kWh'}</b></div>`}).join('');
+}
+function applyLanguage(){
+ document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.title=lang==='ar'?'Green Life | جرين لايف':'Green Life | Egypt Energy Saver';
+ document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t(el.dataset.t));
+ $('subtitle').textContent=t('subtitle');$('heroTitle').textContent=t('heroTitle');$('heroDesc').textContent=t('heroDesc');
+ $('langBtn').textContent=lang==='ar'?'English':'عربي';$('appName').placeholder=lang==='ar'?'مثال: تلفزيون':'e.g. TV';
+ $('balance').placeholder='150';$('routineText').placeholder=t('routinePlaceholder');$('chatQuestion').placeholder=t('chatPlaceholder');$('chatQuestion').setAttribute('aria-label',t('chatPlaceholder'));
+ $('themeBtn').setAttribute('aria-label',lang==='ar'?'تغيير المظهر':'Change appearance');$('installBtn').textContent=lang==='ar'?'تثبيت التطبيق':'Install app';$('donut').setAttribute('aria-label',lang==='ar'?'رسم دائري لاستهلاك الأجهزة':'Appliance consumption chart');
+ $('applianceForm').querySelector('button[type="submit"]').textContent=t('add');
+ $('chatLog').innerHTML=`<div class="chat-msg">${t('chatWelcome')}</div>`;
+ try{const saved=JSON.parse(localStorage.getItem('gl-routine-profile')||'null');if(saved)makeRoutinePlan(saved);else $('coachResults').innerHTML=`<div class="muted">${t('coachEmpty')}</div>`;}catch{}
+ render();
+}
+function applyTheme(){document.documentElement.classList.toggle('dark',dark);$('themeBtn').textContent=dark?'☀':'☾';}
+$('applianceForm').addEventListener('submit',e=>{
+ e.preventDefault();const name=$('appName').value.trim(),watts=Number($('appWatts').value),hours=Number($('appHours').value);
+ if(!name||!Number.isFinite(watts)||watts<=0||!Number.isFinite(hours)||hours<=0||hours>24)return;
+ appliances.push({id:Date.now()+Math.random(),name,watts,hours});save();e.target.reset();render();
+});
+document.querySelectorAll('[data-preset]').forEach(btn=>btn.addEventListener('click',()=>{
+ const presets={ac:[lang==='ar'?'تكييف 1.5 حصان':'1.5 HP air conditioner',1400,6],heater:[lang==='ar'?'سخان كهربائي':'Water heater',1800,2],fridge:[lang==='ar'?'ثلاجة':'Refrigerator',200,24]};
+ const p=presets[btn.dataset.preset];appliances.push({id:Date.now()+Math.random(),name:p[0],watts:p[1],hours:p[2]});save();render();
+}));
+$('applianceList').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;appliances=appliances.filter(a=>String(a.id)!==b.dataset.remove);save();render()});
+$('resetBtn').addEventListener('click',()=>{if(confirm(t('resetAsk'))){appliances=[];save();render();$('tips').innerHTML='';$('meterResult').hidden=true}});
+$('langBtn').addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';localStorage.setItem('gl-lang',JSON.stringify(lang));applyLanguage()});
+$('themeBtn').addEventListener('click',()=>{dark=!dark;localStorage.setItem('gl-dark',JSON.stringify(dark));applyTheme()});
+$('planBtn').addEventListener('click',()=>{
+ const total=appliances.reduce((s,a)=>s+usage(a),0),tips=[];
+ const ac=appliances.filter(a=>/تكييف|air conditioner|ac\b/i.test(a.name));
+ const heater=appliances.filter(a=>/سخان|heater/i.test(a.name));
+ if(ac.length)tips.push(lang==='ar'?'❄️ اضبط التكييف على درجة معتدلة ونظّف الفلاتر بانتظام، وأغلق الأبواب والنوافذ أثناء التشغيل.':'❄️ Use a moderate AC setting, clean filters regularly, and keep doors and windows closed.');
+ if(heater.length)tips.push(lang==='ar'?'♨️ شغّل السخان عند الحاجة فقط، واضبط الحرارة على مستوى مناسب وفق دليل الجهاز.':'♨️ Run the water heater only when needed and follow its manual for a suitable setting.');
+ if(total>200)tips.push(lang==='ar'?'⚡ راجع الأجهزة الأعلى استهلاكاً في الرسم، وقلّل ساعات تشغيلها عندما يكون ذلك عملياً.':'⚡ Check the highest-use appliances in the chart and reduce their runtime where practical.');
+ tips.push(lang==='ar'?'🌱 افصل الشواحن والأجهزة غير المستخدمة، واستخدم الإضاءة الموفرة للطاقة.':'🌱 Unplug unused chargers and devices, and use energy-efficient lighting.');
+ $('tips').innerHTML=tips.map(x=>`<div class="tip">${x}</div>`).join('');
+});
+
+// Local bilingual routine and energy coach. All generated text follows the selected language.
+const routineStoreKey='gl-routine-profile';
+function clockMinutes(v){const [h,m]=String(v||'07:00').split(':').map(Number);return (h||0)*60+(m||0)}
+function clockLabel(v){return new Intl.DateTimeFormat(lang==='ar'?'ar-EG':'en-US',{hour:'numeric',minute:'2-digit'}).format(new Date(`2000-01-01T${v||'07:00'}:00`))}
+function addCoachCard(title,body){return `<div class="coach-card"><b>${title}</b><br>${body}</div>`}
+function makeRoutinePlan(profile){
+ const text=profile.routine.toLowerCase(),wake=clockMinutes(profile.wake),sleep=clockMinutes(profile.sleep),en=lang==='en';
+ const late=sleep<=wake,hasAC=/تكييف|مكيف|air.?condition|\bac\b/.test(text),screens=/موبايل|كمبيوتر|لابتوب|تلفزيون|شاشه|شاشة|gaming|computer|tv|screen|phone|laptop/.test(text),study=/مذاكر|دراس|واجب|school|study|homework/.test(text),commute=/مدرس|جامع|شغل|مواصل|بروح|بنزل|school|university|work|commut/.test(text);
+ const ideas=[],energy=[];
+ if(en){
+  ideas.push(late?'Aim for a consistent sleep and wake schedule that fits your commitments. If you want to shift it, make gradual changes.':'Keep a regular sleep and wake schedule, and allow yourself a calm, screen-light wind-down before bed.');
+  if(profile.focus==='movement'||profile.focus==='general')ideas.push('Take short, regular movement breaks between study or sitting periods, and choose an activity you enjoy.');
+  if(profile.focus==='sleep'||profile.focus==='balance')ideas.push('Dim the lights and reduce screen time before bed. Keep your phone away from the bed if that helps.');
+  ideas.push('Drink water regularly and eat varied, regular meals. Avoid restrictive diets or trying to skip meals.');
+  ideas.push(commute?'Prepare your bag and essentials the night before to make mornings less rushed.':'Use daylight when possible and ventilate your room when the weather allows.');
+  if(hasAC)energy.push('Air conditioning: Use it only in the room you are occupying, close doors and windows, and follow the appliance manual for a comfortable setting.');
+  if(screens)energy.push('Screens: Use a comfortable brightness level and power-saving mode. Turn screens off when you leave for a while.');
+  if(study)energy.push('Study time: Work in one well-lit space, use daylight when possible, and switch off lights in empty rooms.');
+  energy.push('Safely switch off devices you are not using. Avoid leaving chargers and electronics powered unnecessarily.');
+  energy.push('Run laundry or ironing when you have a suitable load, following the manufacturer’s instructions.');
+ }else{
+  ideas.push(late?'حاول تثبّت ميعاد نوم واستيقاظ مناسبين لاحتياجك، وغيّر الميعاد تدريجياً لو جدولك الحالي متأخر.':'حافظ على مواعيد نوم واستيقاظ منتظمة، وسيب وقت هادي قبل النوم بعيداً عن الشاشات.');
+  if(profile.focus==='movement'||profile.focus==='general')ideas.push('خد فواصل حركة قصيرة ومنتظمة بين فترات المذاكرة أو القعدة، واختار نشاطاً بتحبه يناسب يومك.');
+  if(profile.focus==='sleep'||profile.focus==='balance')ideas.push('خفّف الإضاءة ووقت الشاشة قبل النوم، وابعد الموبايل عن السرير لو ده بيساعدك.');
+  ideas.push('اشرب مياه بانتظام خلال اليوم، وكل وجبات متنوعة ومنتظمة من غير حرمان أو أنظمة قاسية.');
+  ideas.push(commute?'جهّز شنطتك واحتياجاتك من بالليل لتقليل التوتر الصبح.':'استفد من ضوء النهار، وهوّي المكان لما الجو يسمح.');
+  if(hasAC)energy.push('التكييف: شغّله في الغرفة المستخدمة فقط، اقفل الأبواب والنوافذ، واضبطه على درجة مريحة حسب الجو ودليل الجهاز.');
+  if(screens)energy.push('الشاشات: فعّل وضع توفير الطاقة وخفّض السطوع لمستوى مريح، واقفل الشاشة عند الابتعاد لفترة.');
+  if(study)energy.push('المذاكرة: اجمع المذاكرة في مكان واحد مضاء بضوء النهار، وشغّل لمبة المهمة بدل إنارة غرف غير مستخدمة.');
+  energy.push('افصل الأجهزة غير المستخدمة بأمان، وتجنب ترك الشواحن والأجهزة على الكهرباء بلا داعٍ.');
+  energy.push('شغّل الغسالة أو المكواة عند وجود حمولة مناسبة، واتبع تعليمات الشركة المصنّعة.');
+ }
+ const timePlan=en?`${clockLabel(profile.wake)}: Start your day with water and a suitable breakfast; open the curtains.\nMidday: Study or work in focused periods with short movement breaks.\nAfter returning: Take time to rest and enjoy an activity; switch off devices in empty rooms.\nBefore ${clockLabel(profile.sleep)}: Slow down, reduce screen use, and prepare for tomorrow.`:`${clockLabel(profile.wake)}: بداية اليوم، مياه وفطار مناسب، وافتح الستائر.\nمنتصف اليوم: مذاكرة أو شغل على فترات مع فواصل حركة قصيرة.\nبعد الرجوع: وقت للراحة ونشاط بتحبه، مع إطفاء الأجهزة في الغرف الفاضية.\nقبل ${clockLabel(profile.sleep)}: هدوء وتقليل الشاشات وتجهيز حاجات بكرة.`;
+ const results=$('coachResults');
+ results.innerHTML=addCoachCard(en?'🗓️ Suggested daily routine':'🗓️ شكل يوم مقترح',escapeHTML(timePlan).split(String.fromCharCode(10)).join('<br>'))+addCoachCard(en?'💚 Healthy everyday habits':'💚 عادات تدعم صحتك',ideas.map(x=>'• '+escapeHTML(x)).join('<br>'))+addCoachCard(en?'⚡ Electricity-saving plan':'⚡ خطة توفير الكهرباء',energy.map(x=>'• '+escapeHTML(x)).join('<br>'))+addCoachCard(en?'🎯 Your first step':'🎯 خطوة تبدأ بيها النهارده',en?'Choose one easy change from this plan and try it for a week. Then decide whether it works for you.':'اختار تغيير واحد سهل من الخطة وجرّبه لمدة أسبوع، وبعدها قيّم إذا كان مناسب ليك.');
+ try{localStorage.setItem(routineStoreKey,JSON.stringify(profile))}catch{}
+}
+function readRoutine(){return {wake:$('wakeTime').value||'07:00',sleep:$('sleepTime').value||'22:30',day:$('dayType').value,focus:$('healthFocus').value,routine:$('routineText').value.trim()}}
+$('routineForm').addEventListener('submit',e=>{e.preventDefault();makeRoutinePlan(readRoutine())});
+try{const saved=JSON.parse(localStorage.getItem(routineStoreKey)||'null');if(saved){$('wakeTime').value=saved.wake||'07:00';$('sleepTime').value=saved.sleep||'22:30';$('dayType').value=saved.day||'school';$('healthFocus').value=saved.focus||'general';$('routineText').value=saved.routine||'';}}catch{}
+function answerCoachQuestion(q){const s=q.toLowerCase(),p=readRoutine(),en=lang==='en';
+ if(/نوم|أنام|اصحى|أصحى|السهر|sleep|wake up|bedtime/.test(s))return en?'Try to keep a sleep and wake schedule that fits your daily commitments. Reduce bright light and screen use before bed. If sleep difficulties or tiredness continue, talk with a trusted adult or a health professional.':'ابدأ بتثبيت ميعاد نوم واستيقاظ يناسب التزاماتك، وقلّل الشاشات والإضاءة قبل النوم. لو عندك صعوبة مستمرة في النوم أو تعب ملحوظ، اتكلم مع ولي أمرك أو مختص صحي.';
+ if(/تكييف|مكيف|حر|\bac\b|air.?condition/.test(s))return en?'Use the air conditioner only when needed and in the room you are using. Close doors and windows, clean its filter as instructed, and use a fan alone when it is comfortable and sufficient.':'شغّل التكييف وقت الحاجة وفي الغرفة المستخدمة، واقفل الأبواب والنوافذ ونظّف الفلتر حسب الدليل. استخدم مروحة لوحدها لما تكون كافية ومريحة.';
+ if(/مذاكر|دراس|مدرس|جامعة|study|school|homework/.test(s))return en?'Choose one study area and make use of daylight. Turn on only the devices you need, take short movement breaks, and drink water during the day.':'اختار مكان واحد للمذاكرة واستفد من ضوء النهار، واجمع الأجهزة اللي محتاجها فقط. خذ فواصل حركة قصيرة واشرب مياه خلال اليوم.';
+ if(/شاش|موبايل|كمبيوتر|تلفزيون|screen|phone|computer|laptop|television/.test(s))return en?'Set the screen to a comfortable brightness, enable power-saving mode, and use the screen timeout. Take regular breaks away from screens, especially before bedtime.':'فعّل السطوع التلقائي أو مستوى مريح، ووضع توفير الطاقة، ومؤقت إطفاء الشاشة. خصص فواصل بعيداً عن الشاشة خصوصاً قبل النوم.';
+ if(/فاتور|استهلاك|كهرب|توفير|جهاز|عداد|bill|electric|energy|appliance|meter/.test(s)){const top=[...appliances].sort((a,b)=>usage(b)-usage(a)).slice(0,2);return top.length?(en?'Based on your appliance list, your highest-use items are: ':'حسب بيانات أجهزتك، أعلى استهلاك حالياً: ')+top.map(a=>`${applianceLabel(a.name)} (${fmt(usage(a))} ${en?'kWh/month approx.':'ك.و.س شهرياً تقريباً'})`).join(en?', ':'، ')+(en?'. Consider reducing the runtime of the highest-use item when practical.':'. ابدأ بتقليل وقت تشغيل الجهاز الأعلى عندما يكون ذلك عملياً.'):(en?'Add your appliances, their power ratings, and daily usage hours so I can identify the biggest sources of consumption.':'أضف أجهزتك وقدرتها وساعات تشغيلها في قسم الأجهزة عشان أقدر أحدد أكبر مصادر الاستهلاك.');}
+ if(/مياه|أكل|غذاء|صحي|صحة|حركة|رياضة|water|food|healthy|health|exercise|movement/.test(s))return en?'Aim for regular water intake, varied meals, and enjoyable daily movement with breaks from sitting. Avoid restrictive eating or exhausting exercise; choose habits that suit you.':'حافظ على شرب المياه، ووجبات متنوعة ومنتظمة، وحركة يومية مناسبة وممتعة مع فواصل من القعدة. تجنب الحرمان أو التمارين المجهدة، واختار ما يناسبك.';
+ return en?`I can help connect your daily routine with electricity savings and healthy everyday habits. Try asking a specific question, or update your routine above. Your saved schedule: wake up at ${clockLabel(p.wake)} and go to sleep at ${clockLabel(p.sleep)}.`:`أقدر أساعدك تربط روتينك بتوفير الكهرباء والعادات اليومية. اكتب سؤالك بشكل محدد، أو حدّث وصف يومك في النموذج. ميعادك المسجل: الاستيقاظ ${clockLabel(p.wake)} والنوم ${clockLabel(p.sleep)}.`;
+}
+$('chatForm').addEventListener('submit',e=>{e.preventDefault();const input=$('chatQuestion'),q=input.value.trim();if(!q)return;const log=$('chatLog');const user=document.createElement('div');user.className='chat-msg user';user.textContent=q;const reply=document.createElement('div');reply.className='chat-msg';reply.textContent=answerCoachQuestion(q);log.append(user,reply);input.value='';log.scrollTop=log.scrollHeight});
+
+$('meterBtn').addEventListener('click',()=>{
+ const balance=Number($('balance').value),out=$('meterResult');
+ if(!Number.isFinite(balance)||balance<=0){alert(t('valid'));return}
+ const total=appliances.reduce((s,a)=>s+usage(a),0),daily=billFor(total).total/30,days=daily>0?balance/daily:Infinity;
+ out.hidden=false;out.innerHTML=`<b>${t('daily')}:</b> ${fmt(daily,2)} ${lang==='ar'?'جنيه/يوم':'EGP/day'}<br><b>${t('days')}:</b> ${Number.isFinite(days)?fmt(days,1):'∞'} ${lang==='ar'?'يوم':'days'}`;
+});
+$('installBtn').addEventListener('click',async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('installBtn').hidden=true});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('installBtn').hidden=false});
+if('serviceWorker' in navigator && location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+applyTheme();applyLanguage();
+})();
+</script>
+</body></html>
